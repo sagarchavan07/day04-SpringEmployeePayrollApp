@@ -1,5 +1,7 @@
 package com.bl.employeepayroll.Entity;
 
+import com.bl.employeepayroll.dto.EmployeeDTO;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,7 +9,7 @@ import javax.persistence.Id;
 import java.time.LocalDate;
 
 @Entity
-public class Employee {
+public class EmployeeData {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -18,10 +20,10 @@ public class Employee {
     private LocalDate startDate;
     private String notes;
 
-    public Employee() {
+    public EmployeeData() {
     }
 
-    public Employee(Long id, String name, String profilePic, String gender, String salary, LocalDate startDate, String notes) {
+    public EmployeeData(Long id, String name, String profilePic, String gender, String salary, LocalDate startDate, String notes) {
         this.id = id;
         this.name = name;
         this.profilePic = profilePic;
@@ -29,6 +31,16 @@ public class Employee {
         this.salary = salary;
         this.startDate = startDate;
         this.notes = notes;
+    }
+
+    public EmployeeData(EmployeeDTO employeeDTO) {
+        this.id = employeeDTO.getId();
+        this.name = employeeDTO.getName();
+        this.profilePic = employeeDTO.getProfilePic();
+        this.gender = employeeDTO.getGender();
+        this.salary = employeeDTO.getSalary();
+        this.startDate = employeeDTO.getStartDate();
+        this.notes = employeeDTO.getNotes();
     }
 
     public Long getId() {
