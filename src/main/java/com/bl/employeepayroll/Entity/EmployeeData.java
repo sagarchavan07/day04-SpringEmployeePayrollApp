@@ -1,7 +1,6 @@
 package com.bl.employeepayroll.Entity;
 
 import com.bl.employeepayroll.dto.EmployeeDTO;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

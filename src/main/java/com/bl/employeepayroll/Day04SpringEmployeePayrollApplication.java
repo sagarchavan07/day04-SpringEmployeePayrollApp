@@ -1,13 +1,15 @@
 package com.bl.employeepayroll;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Day04SpringEmployeePayrollAppApplication {
+@Slf4j
+public class Day04SpringEmployeePayrollApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Day04SpringEmployeePayrollAppApplication.class, args);
+        SpringApplication.run(Day04SpringEmployeePayrollApplication.class, args);
     }
 
 }
