@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//Used to send response back to the browser, holds the message and response object
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
