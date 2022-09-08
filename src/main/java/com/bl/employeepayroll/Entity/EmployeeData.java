@@ -1,18 +1,22 @@
 package com.bl.employeepayroll.Entity;
 
 import com.bl.employeepayroll.dto.EmployeeDTO;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDate;
 
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
+
+//EmployeeData is responsible to save the employee data to Database
 @Entity
 public class EmployeeData {
+    //id is auto generated primary key
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    @ElementCollection
+    @CollectionTable(name = "employee_department", joinColumns = @JoinColumn(name = "id"))
+    private List<String> department;
     private String profilePic;
     private String gender;
     private String salary;
@@ -22,9 +26,9 @@ public class EmployeeData {
     public EmployeeData() {
     }
 
-    public EmployeeData(Long id, String name, String profilePic, String gender, String salary, LocalDate startDate, String notes) {
-        this.id = id;
+    public EmployeeData(String name, List<String> department, String profilePic, String gender, String salary, LocalDate startDate, String notes) {
         this.name = name;
+        this.department=department;
         this.profilePic = profilePic;
         this.gender = gender;
         this.salary = salary;
@@ -33,8 +37,8 @@ public class EmployeeData {
     }
 
     public EmployeeData(EmployeeDTO employeeDTO) {
-        this.id = employeeDTO.getId();
         this.name = employeeDTO.getName();
+        this.department=employeeDTO.getDepartment();
         this.profilePic = employeeDTO.getProfilePic();
         this.gender = employeeDTO.getGender();
         this.salary = employeeDTO.getSalary();
@@ -52,6 +56,14 @@ public class EmployeeData {
 
     public String getName() {
         return name;
+    }
+
+    public List<String> getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(List<String> department) {
+        this.department = department;
     }
 
     public void setName(String name) {
@@ -100,9 +112,10 @@ public class EmployeeData {
 
     @Override
     public String toString() {
-        return "Employee{" +
+        return "EmployeeData{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", department=" + department +
                 ", profilePic='" + profilePic + '\'' +
                 ", gender='" + gender + '\'' +
                 ", salary='" + salary + '\'' +

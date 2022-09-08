@@ -1,12 +1,16 @@
 package com.bl.employeepayroll.Service;
 
 import com.bl.employeepayroll.Entity.EmployeeData;
+import com.bl.employeepayroll.Exception.EmployeePayrollException;
+import com.bl.employeepayroll.dto.EmployeeDTO;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface IPayrollService {
-    public Optional getEmployeeDataById(long empId);
-    public EmployeeData addEmployee(EmployeeData employee);
-    public EmployeeData updateEmployee(long empId, EmployeeData employeeData);
-    public void deleteEmployeeById(long empId);
+    Optional getEmployeeById(long empId) ;
+    List<EmployeeData> getAllEmployee() ;
+    EmployeeData addEmployee(EmployeeDTO employeeDTO);
+    EmployeeData updateEmployee(long empId, EmployeeDTO employeeDTO) ;
+    void deleteEmployeeById(long empId) ;
 }
