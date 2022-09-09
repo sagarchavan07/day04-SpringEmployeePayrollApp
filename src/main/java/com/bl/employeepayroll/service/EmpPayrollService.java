@@ -1,14 +1,14 @@
-package com.bl.employeepayroll.Service;
+package com.bl.employeepayroll.service;
 
-import com.bl.employeepayroll.Entity.EmployeeData;
-import com.bl.employeepayroll.Exception.EmployeePayrollException;
-import com.bl.employeepayroll.Repository.EmpRepository;
+import com.bl.employeepayroll.email.EmailService;
+import com.bl.employeepayroll.entity.EmployeeData;
+import com.bl.employeepayroll.exception.EmployeePayrollException;
+import com.bl.employeepayroll.repository.EmpRepository;
 import com.bl.employeepayroll.dto.EmployeeDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 //in Service class we write all the logics, methods called by the controller class
 @Service
@@ -17,12 +17,11 @@ public class EmpPayrollService implements IPayrollService{
     @Autowired
     EmpRepository empRepository;
 
-    public Optional<EmployeeData> getEmployeeById(long empId) {
-        if (empRepository.findById(empId).isPresent()){
-            return empRepository.findById(empId);
-        } else {
-            throw new EmployeePayrollException("Employee id " + empId + " not found!");
-        }
+    @Autowired
+    EmailService emailService;
+
+    public EmployeeData getEmployeeById(long empId) {
+        return empRepository.findById(empId).orElseThrow(()->new EmployeePayrollException("Employee id " + empId + " not found!"));
     }
 
     public List<EmployeeData> getAllEmployee() {
@@ -35,7 +34,9 @@ public class EmpPayrollService implements IPayrollService{
 
     public EmployeeData addEmployee(EmployeeDTO employeeDTO){
         EmployeeData employeeData=new EmployeeData(employeeDTO);
-        return empRepository.save(employeeData);
+        EmployeeData employeeData1 = empRepository.save(employeeData);
+        emailService.sendEmail(employeeData.getEmail(), "Employee Registration Successful!", "Hello " + employeeData.getName() + ", \nYou have successfully registered on the EmployeePayroll Application. \n Your Employee id is " + employeeData.getId());
+        return employeeData1;
     }
 
     public EmployeeData updateEmployee(long empId, EmployeeDTO employeeDTO) {

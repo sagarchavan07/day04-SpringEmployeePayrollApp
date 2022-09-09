@@ -18,6 +18,7 @@ public class EmployeeDTO {
     private String name;
     private List<String> department;
     private String profilePic;
+    private String email;
     private String gender;
     private String salary;
     private LocalDate startDate;

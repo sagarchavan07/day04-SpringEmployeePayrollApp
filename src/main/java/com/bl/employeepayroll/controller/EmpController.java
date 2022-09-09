@@ -1,6 +1,6 @@
-package com.bl.employeepayroll.Controller;
+package com.bl.employeepayroll.controller;
 
-import com.bl.employeepayroll.Service.EmpPayrollService;
+import com.bl.employeepayroll.service.EmpPayrollService;
 import com.bl.employeepayroll.dto.EmployeeDTO;
 import com.bl.employeepayroll.dto.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;

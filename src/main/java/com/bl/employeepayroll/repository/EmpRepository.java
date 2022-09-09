@@ -1,6 +1,6 @@
-package com.bl.employeepayroll.Repository;
+package com.bl.employeepayroll.repository;
 
-import com.bl.employeepayroll.Entity.EmployeeData;
+import com.bl.employeepayroll.entity.EmployeeData;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

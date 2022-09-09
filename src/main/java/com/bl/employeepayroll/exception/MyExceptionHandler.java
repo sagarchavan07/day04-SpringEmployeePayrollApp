@@ -1,4 +1,4 @@
-package com.bl.employeepayroll.Exception;
+package com.bl.employeepayroll.exception;
 
 import com.bl.employeepayroll.dto.ResponseDTO;
 import org.springframework.http.HttpStatus;
