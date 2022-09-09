@@ -1,4 +1,4 @@
-package com.bl.employeepayroll.Exception;
+package com.bl.employeepayroll.exception;
 
 //custom exception class
 public class EmployeePayrollException extends RuntimeException{

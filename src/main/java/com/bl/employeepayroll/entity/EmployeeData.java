@@ -1,4 +1,4 @@
-package com.bl.employeepayroll.Entity;
+package com.bl.employeepayroll.entity;
 
 import com.bl.employeepayroll.dto.EmployeeDTO;
 
@@ -18,6 +18,7 @@ public class EmployeeData {
     @CollectionTable(name = "employee_department", joinColumns = @JoinColumn(name = "id"))
     private List<String> department;
     private String profilePic;
+    private String email;
     private String gender;
     private String salary;
     private LocalDate startDate;
@@ -26,10 +27,11 @@ public class EmployeeData {
     public EmployeeData() {
     }
 
-    public EmployeeData(String name, List<String> department, String profilePic, String gender, String salary, LocalDate startDate, String notes) {
+    public EmployeeData(String name, List<String> department, String profilePic, String email, String gender, String salary, LocalDate startDate, String notes) {
         this.name = name;
         this.department=department;
         this.profilePic = profilePic;
+        this.email = email;
         this.gender = gender;
         this.salary = salary;
         this.startDate = startDate;
@@ -40,6 +42,7 @@ public class EmployeeData {
         this.name = employeeDTO.getName();
         this.department=employeeDTO.getDepartment();
         this.profilePic = employeeDTO.getProfilePic();
+        this.email = employeeDTO.getEmail();
         this.gender = employeeDTO.getGender();
         this.salary = employeeDTO.getSalary();
         this.startDate = employeeDTO.getStartDate();
@@ -72,6 +75,14 @@ public class EmployeeData {
 
     public String getProfilePic() {
         return profilePic;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setProfilePic(String profilePic) {
@@ -117,6 +128,7 @@ public class EmployeeData {
                 ", name='" + name + '\'' +
                 ", department=" + department +
                 ", profilePic='" + profilePic + '\'' +
+                ", email='" + email + '\'' +
                 ", gender='" + gender + '\'' +
                 ", salary='" + salary + '\'' +
                 ", startDate=" + startDate +
