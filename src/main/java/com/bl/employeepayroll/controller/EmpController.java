@@ -18,7 +18,7 @@ public class EmpController {
     //created object of empPayrollService using @Autowired annotation
     @Autowired
     EmpPayrollService empPayrollService;
-    @GetMapping(value = {"","/","get"})
+    @GetMapping(value = {"","/"})
     ResponseEntity<String> getEmpPayrollData(){
         return new ResponseEntity<>("GET call success", HttpStatus.OK);
     }
@@ -26,6 +26,12 @@ public class EmpController {
     @GetMapping("/get/{empId}")
     ResponseEntity<ResponseDTO> getEmpPayrollDataById(@PathVariable long empId) {
         ResponseDTO responseDTO = new ResponseDTO("GET call successful",empPayrollService.getEmployeeById(empId) );
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+    }
+
+    @GetMapping("/get")
+    ResponseEntity<ResponseDTO> getEmpPayrollDataByName(@RequestParam String name) {
+        ResponseDTO responseDTO = new ResponseDTO("GET call successful",empPayrollService.getEmployeeByName(name) );
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
 
