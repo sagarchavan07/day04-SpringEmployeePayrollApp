@@ -25,37 +25,32 @@ public class EmpController {
 
     @GetMapping("/get/{empId}")
     ResponseEntity<ResponseDTO> getEmpPayrollDataById(@PathVariable long empId) {
-        ResponseDTO responseDTO = new ResponseDTO("GET call successful",empPayrollService.getEmployeeById(empId) );
-        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        return empPayrollService.getEmployeeById(empId);
+
     }
 
     @GetMapping("/get")
     ResponseEntity<ResponseDTO> getEmpPayrollDataByName(@RequestParam String name) {
-        ResponseDTO responseDTO = new ResponseDTO("GET call successful",empPayrollService.getEmployeeByName(name) );
-        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        return empPayrollService.getEmployeeByName(name);
     }
 
     @GetMapping("/get/all")
     ResponseEntity<ResponseDTO> getAllEmpPayrollData() {
-        ResponseDTO responseDTO = new ResponseDTO("GET call successful",empPayrollService.getAllEmployee() );
-        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        return empPayrollService.getAllEmployee();
     }
 
     @PostMapping("/create")
     public ResponseEntity<ResponseDTO> addEmployee(@Valid @RequestBody EmployeeDTO employeeDTO){
-        ResponseDTO responseDTO = new ResponseDTO("Employee added successfully", empPayrollService.addEmployee(employeeDTO));
-        return new ResponseEntity<>( responseDTO , HttpStatus.CREATED);
+        return  empPayrollService.addEmployee(employeeDTO);
     }
 
     @PutMapping("/update/{empId}")
     public ResponseEntity<ResponseDTO> updateEmployee(@RequestBody EmployeeDTO employeeDTO, @PathVariable long empId) {
-        ResponseDTO responseDTO = new ResponseDTO("Updated Employee", empPayrollService.updateEmployee(empId, employeeDTO));
-        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+        return empPayrollService.updateEmployee(empId, employeeDTO);
     }
 
     @DeleteMapping("/delete/{empId}")
     public ResponseEntity<String> deleteEmployee(@PathVariable long empId){
-        empPayrollService.deleteEmployeeById(empId);
-        return new ResponseEntity<>("Deleted Employee empId: "+empId , HttpStatus.OK);
+        return empPayrollService.deleteEmployeeById(empId);
     }
 }
